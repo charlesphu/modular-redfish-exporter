@@ -1,0 +1,18 @@
+---
+bmc:
+  basePath: /redfish/v1/
+  metrics:
+    ThermalMetrics:
+      chasis: ["Chassis*", "HGX_CPU_*", "HGX_GPU_*"]
+      path: "{chasis}/ThermalSubsystem/ThermalMetrics"
+    Voltage:
+      pdb: ["PDB_*"]
+      volt: ["*Volt_In*", "*Volt_Out*", "*Voltage*"]
+      gpu: ["HGX_GPU_*"]
+      path: ["Chassis/{pdb}/Sensors/{volt}", "Chassis/{gpu}/{volt}"]
+  events:
+    LeakDetector:
+      leakdetector: ["*LeakDetector*"]
+      path: Chassis_0/Sensors/{leakdetector}
+    EventLog:
+      path: Systems/System_0/LogServices/EventLog/Entries
